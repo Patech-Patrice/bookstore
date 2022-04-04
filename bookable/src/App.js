@@ -4,6 +4,7 @@ import axios from 'axios';
 import Books from './components/books';
 import Users from './components/users';
 import Dashboard from './components/dashboard';
+import Authentication from './components/auth/authentication';
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 
@@ -47,6 +48,9 @@ return () => {(mounted = false)};
     <div className="App">
       <nav>
       <ul>
+      <li>
+           <Link to="authentication">Log In or Sign Up</Link>
+          </li>
           <li>
            <Link to="/">Home</Link>
           </li>
@@ -66,6 +70,7 @@ return () => {(mounted = false)};
                             <Route path="books" element={<Books books={books}/>}></Route>
                             <Route path="users" element={<Users users={users}/>}></Route>
                             <Route path="dashboard" element={<Dashboard/>}></Route>
+                            <Route path="authentication" element={<Authentication/>}></Route>
                       
                           </Routes>
                           </div>
