@@ -3,6 +3,9 @@ import React from 'react'
 function Users(props) {
     return (
         <div>
+
+        
+           
             <h1> These Users are from the API</h1>
     
             {props.users.map((user) => {
@@ -14,6 +17,7 @@ function Users(props) {
                 </div>
                 );
             })}
+    
             </div>
     );
 }

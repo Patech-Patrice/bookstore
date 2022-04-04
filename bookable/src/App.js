@@ -3,9 +3,11 @@ import './App.css';
 import axios from 'axios';
 import Books from './components/books';
 import Users from './components/users';
+import Dashboard from './components/dashboard';
 import { useState, useEffect } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
 
-const API_URL = "http://localhost:3000/api/v1/books";
+// const API_URL = "http://localhost:3000/api/v1/books";
 
 function getBookData(){
   return axios.get('/api/v1/books').then((response) => response.data)
@@ -43,11 +45,35 @@ return () => {(mounted = false)};
 
   return (
     <div className="App">
-      <h1> Hello </h1>
-      <Books books={books}/>
-      <Users users={users} />
+      <nav>
+      <ul>
+          <li>
+           <Link to="/">Home</Link>
+          </li>
+          <li>
+           <Link to="users">Users</Link>
+          </li>
+          <li>
+            <Link to="dashboard">Dashboard</Link>
+         </li>
+          <li>
+           <Link to="books">Books</Link>
+          </li>
+        </ul>
+        </nav>
+                  <div className="main">
+                          <Routes>
+                            <Route path="books" element={<Books books={books}/>}></Route>
+                            <Route path="users" element={<Users users={users}/>}></Route>
+                            <Route path="dashboard" element={<Dashboard/>}></Route>
+                      
+                          </Routes>
+                          </div>
+  
     </div>
   );
 }
+
+
 
 export default App;
