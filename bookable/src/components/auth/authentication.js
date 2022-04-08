@@ -18,13 +18,12 @@ const logGoogleUser = async () => {
 
     return (
         <div>
-            <h1> This is where users will choose to sign up or sign in</h1>
-
+            <h1> Sign in Page </h1>
+            <button onClick={logGoogleUser}>Sign in with Google Popup</button>
 
         <SignUp />
 
 
-         <button onClick={logGoogleUser}>Sign in with Google Popup</button>
             </div>
     );
 }

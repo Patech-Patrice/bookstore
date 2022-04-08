@@ -2,6 +2,7 @@ import { Routes, Route, Link, Outlet } from 'react-router-dom';
 import './App.css';
 import Home from './routes/home/home.js';
 import SignUp from './components/auth/signup.js'
+import Authentication from './components/auth/authentication.js'
 
 import { ReactComponent as BookLogo} from './assets/book_logo.svg';
 
@@ -13,55 +14,43 @@ const Show = () => {
   );
 };
 
-const Authentication = () =>{
-  return (
-    <div>
-
-    <SignUp />
-    </div>
-
-  );
-};
 
 
 const App = () => {
-
-
   return (
-    <div >
-      <div className= "App">
-        <div >
-          <Link  className='logo-container' to='/'>
+    <div className= "App">
+         <div>
+              <Link  className='logo-container' to='/'>
               <BookLogo className="logo"/>
              </Link>
           </div>
         <nav className='nav-link'>
-        <ul>
-          <li>
-           <Link to="authentication">Log In or Sign Up</Link>
+           <ul>
+            <li>
+              <Link to="authentication">Log In or Sign Up</Link>
             </li>
-          <li>
-           <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="dashboard">Dashboard</Link>
-         </li>
-          {/* <li>
-           <Link to="books">Books</Link>
-          </li> */}
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="dashboard">Dashboard</Link>
+           </li>
          </ul>
       </nav>
-    </div>
+ 
 
-        <div className="categories-container">  
-                <Routes>
-                          <Route path='/' element={<Home/>} >
-                          <Route path='/show' element={<Show/>} />
-                          </Route>
-                          <Route path="authentication" element={<Authentication/>}></Route>        
-                </Routes>
-            </div>
-        </div>
+{/* <Authentication /> */}
+
+          <div className="categories-container">  
+                  <Routes>
+                            <Route path='/' element={<Home/>} >
+                            <Route path='/show' element={<Show/>} />
+                            </Route>
+                            <Route path="authentication" element={<Authentication/>}></Route>        
+                  </Routes>
+          </div>
+
+    </div>
  
             );
 };

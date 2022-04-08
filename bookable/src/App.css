@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+ 
 }
 
 .App-logo {
@@ -60,6 +61,7 @@
      position: absolute;
      top: 0px;
      right: 0px;
+     background-color: '';
     }
 
 
