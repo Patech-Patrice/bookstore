@@ -38,6 +38,7 @@ const SignUp = () => {
                 <input type='password'required onChange={handleChange} name='confirmPassword' value={confirmPassword} />
                 <button type='submit'>SignUp</button> 
             </form>
+           
         </div>
     )
 }

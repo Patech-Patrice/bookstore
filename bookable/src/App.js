@@ -1,6 +1,7 @@
 import { Routes, Route, Link, Outlet } from 'react-router-dom';
 import './App.css';
 import Home from './routes/home/home.js';
+import SignUp from './components/auth/signup.js'
 
 import { ReactComponent as BookLogo} from './assets/book_logo.svg';
 
@@ -9,6 +10,16 @@ import { ReactComponent as BookLogo} from './assets/book_logo.svg';
 const Show = () => {
   return (
     <h1> This is the show page </h1>
+  );
+};
+
+const Authentication = () =>{
+  return (
+    <div>
+
+    <SignUp />
+    </div>
+
   );
 };
 
@@ -45,9 +56,9 @@ const App = () => {
         <div className="categories-container">  
                 <Routes>
                           <Route path='/' element={<Home/>} >
-                            
                           <Route path='/show' element={<Show/>} />
                           </Route>
+                          <Route path="authentication" element={<Authentication/>}></Route>        
                 </Routes>
             </div>
         </div>
