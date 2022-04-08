@@ -1,5 +1,5 @@
 import CategoryItem from '../../components/category-item/category-item.js';
-
+import { Outlet } from 'react-router-dom';
 
 const Home = () => {
 
@@ -35,12 +35,10 @@ const Home = () => {
   return (
 
         <div className="categories-container">
+            <Outlet />
            {categories.map(( category) =>(
               <CategoryItem key={category.id} category={category} />
                ))} 
-             
-
-            
           </div>
   );
 };
