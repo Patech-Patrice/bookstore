@@ -37,10 +37,6 @@ const App = () => {
            </li>
          </ul>
       </nav>
- 
-
-{/* <Authentication /> */}
-
           <div className="categories-container">  
                   <Routes>
                             <Route path='/' element={<Home/>} >
