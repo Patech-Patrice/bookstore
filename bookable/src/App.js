@@ -16,6 +16,7 @@ const Show = () => {
 
 
 
+
 const App = () => {
   return (
     <div className= "App">
@@ -35,14 +36,21 @@ const App = () => {
             <li>
               <Link to="dashboard">Dashboard</Link>
            </li>
+          
          </ul>
       </nav>
+
+
+
+
+
           <div className="categories-container">  
                   <Routes>
                             <Route path='/' element={<Home/>} >
                             <Route path='/show' element={<Show/>} />
                             </Route>
-                            <Route path="authentication" element={<Authentication/>}></Route>        
+                            <Route path="authentication" element={<Authentication/>}></Route> 
+                       
                   </Routes>
           </div>
 

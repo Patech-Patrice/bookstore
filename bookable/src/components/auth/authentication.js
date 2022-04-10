@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { signInWithGooglePopup, createUserDocumentFromAuth} from '../../utils/firebase/firebase.utils';
 import SignUp from '../../components/auth/signup.js';
+import SignIn from '../../components/auth/sign-in.js';
 
 
 
@@ -18,10 +19,12 @@ const logGoogleUser = async () => {
 
     return (
         <div>
-            <h1> Sign in Page </h1>
-            <button onClick={logGoogleUser}>Sign in with Google Popup</button>
 
+
+
+        <SignIn />
         <SignUp />
+     
 
 
             </div>
