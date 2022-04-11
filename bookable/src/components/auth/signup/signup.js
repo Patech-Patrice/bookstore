@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import FormInput from '../../components/form-input/form-input.js'
-import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth, signInWithGooglePopup } from '../../utils/firebase/firebase.utils.js'
-import '../../components/auth/signup.styles.scss';
-import Button from '../../components/button/button.js';
+import FormInput from '../../../components/form-input/form-input.js'
+import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../../utils/firebase/firebase.utils.js'
+import '../../../components/auth/signup/signup.styles.scss';
+import Button from '../../../components/button/button.js';
 
 const defaultFormFields = {
     displayName: '',
@@ -52,11 +52,11 @@ const SignUp = () => {
             setFormFields({...formFields, [name]: value });
     };
 
-    const logGoogleUser = async () => {
-        const {user}= await signInWithGooglePopup();
-        // console.log(response);
-        const userDocRef = await createUserDocumentFromAuth(user);
-    };
+    // const logGoogleUser = async () => {
+    //     const {user}= await signInWithGooglePopup();
+    //     // console.log(response);
+    //     const userDocRef = await createUserDocumentFromAuth(user);
+    // };
 
     return(
         <div className="sign-up-container">

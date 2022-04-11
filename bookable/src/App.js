@@ -1,7 +1,6 @@
 import { Routes, Route, Link, Outlet } from 'react-router-dom';
 import './App.css';
 import Home from './routes/home/home.js';
-import SignUp from './components/auth/signup.js'
 import Authentication from './components/auth/authentication.js'
 
 import { ReactComponent as BookLogo} from './assets/book_logo.svg';
@@ -15,44 +14,48 @@ const Show = () => {
 };
 
 
+const Navigation = () => {
+  return (
+   
+    <div>
+      <div className='nav-link'>
+       <Link to="authentication">Log In or Sign Up</Link>
+     </div>
+     <Outlet />
+  </div>
+
+
+  )
+}
 
 
 const App = () => {
   return (
     <div className= "App">
          <div>
-              <Link  className='logo-container' to='/'>
+              <Link className='logo-container' to='/'>
               <BookLogo className="logo"/>
              </Link>
           </div>
-        <nav className='nav-link'>
-           <ul>
-            <li>
+        {/* <nav className='nav-link'>
+            <ul>
               <Link to="authentication">Log In or Sign Up</Link>
-            </li>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            {/* <li>
-              <Link to="dashboard">Dashboard</Link>
-           </li> */}
-          
-         </ul>
-      </nav>
+            </ul>
+        
+      </nav> */}
 
 
 
 
 
-          <div className="categories-container">  
                   <Routes>
-                            <Route path='/' element={<Home/>} >
-                            <Route path='/show' element={<Show/>} />
-                            </Route>
-                            <Route path="authentication" element={<Authentication/>}></Route> 
-                       
+                      <Route path='/' element={<Navigation/>}> 
+                         <Route index element={<Home/>} />
+                         <Route path='show' element={<Show/>} />
+                         <Route path="authentication" element={<Authentication/>} />
+                      </Route>
                   </Routes>
-          </div>
+      
 
     </div>
  
