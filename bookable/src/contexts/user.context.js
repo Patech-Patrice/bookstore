@@ -14,3 +14,5 @@ export const UserContext = createContext({
                 value={value}>{children}
             </UserContext.Provider>; 
  };
+
+ export default UserContext ;

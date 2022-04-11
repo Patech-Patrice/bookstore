@@ -1,8 +1,9 @@
+import { Fragment, useContext } from 'react';
 import { Routes, Route, Link, Outlet } from 'react-router-dom';
 import './App.css';
 import Home from './routes/home/home.js';
 import Authentication from './components/auth/authentication.js'
-
+import { UserContext } from './contexts/user.context.js';
 import { ReactComponent as BookLogo} from './assets/book_logo.svg';
 
 
@@ -15,17 +16,20 @@ const Show = () => {
 
 
 const Navigation = () => {
+  const { currentUser } = useContext(UserContext);
+
+  console.log(currentUser);
   return (
-   
-    <div>
-      <div className='nav-link'>
-       <Link to="authentication">Log In or Sign Up</Link>
-     </div>
-     <Outlet />
-  </div>
+        <Fragment>
+          <div className='nav-link'>
+                 <Link 
+                   to="authentication">Log In or Sign Up
+                 </Link>
+            </div>
+          <Outlet />
+        </Fragment>
 
-
-  )
+  );
 }
 
 
@@ -37,12 +41,7 @@ const App = () => {
               <BookLogo className="logo"/>
              </Link>
           </div>
-        {/* <nav className='nav-link'>
-            <ul>
-              <Link to="authentication">Log In or Sign Up</Link>
-            </ul>
-        
-      </nav> */}
+ 
 
 
 

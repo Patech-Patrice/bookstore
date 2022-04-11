@@ -3,7 +3,7 @@ import FormInput from '../../../components/form-input/form-input.js'
 import { signInWithGoogle, createUserDocumentFromAuth, signInWithGooglePopup, signInAuthUserWithEmailAndPassword } from '../../../utils/firebase/firebase.utils.js'
 import '../../../components/auth/sign-in/sign-in.styles.scss';
 import Button from '../../../components/button/button.js';
-//import UserContext from '../../../contexts/user.context.js';
+import UserContext from '../../../contexts/user.context.js';
 
 const defaultFormFields = {
     email: '',
@@ -16,9 +16,9 @@ const SignIn = () => {
 
    
 
-    // const { currentUser, setCurrentUser } = useContext(UserContext);
+     const { setCurrentUser } = useContext(UserContext);
 
-    // console.log(currentUser);
+   
 
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
@@ -39,7 +39,7 @@ const SignIn = () => {
                     email,
                     password
                 );
-                // setCurrentUser(user);    
+                 setCurrentUser(user);    
 
                 resetFormFields();
 
