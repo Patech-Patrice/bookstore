@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import FormInput from '../../../components/form-input/form-input.js'
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../../utils/firebase/firebase.utils.js'
 import '../../../components/auth/signup/signup.styles.scss';
 import Button from '../../../components/button/button.js';
+import { UserContext } from '../../../contexts/user.context.js';
 
 const defaultFormFields = {
     displayName: '',
@@ -14,6 +15,8 @@ const defaultFormFields = {
 const SignUp = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { displayName, email, password, confirmPassword } = formFields;
+
+    const { setCurrentUser } = useContext(UserContext);
 
     console.log(formFields);
 
@@ -29,10 +32,12 @@ const SignUp = () => {
             return;
         }
         try {
-            const { user }= await createAuthUserWithEmailAndPassword(
+            const { user } = await createAuthUserWithEmailAndPassword(
                 email,
                 password
                 );
+
+                setCurrentUser(user);
 
          await createUserDocumentFromAuth(user, { displayName }); 
                 resetFormFields();
@@ -52,11 +57,7 @@ const SignUp = () => {
             setFormFields({...formFields, [name]: value });
     };
 
-    // const logGoogleUser = async () => {
-    //     const {user}= await signInWithGooglePopup();
-    //     // console.log(response);
-    //     const userDocRef = await createUserDocumentFromAuth(user);
-    // };
+  
 
     return(
         <div className="sign-up-container">

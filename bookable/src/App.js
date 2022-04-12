@@ -5,6 +5,7 @@ import Home from './routes/home/home.js';
 import Authentication from './components/auth/authentication.js'
 import { UserContext } from './contexts/user.context.js';
 import { ReactComponent as BookLogo} from './assets/book_logo.svg';
+import { signOutUser} from './utils/firebase/firebase.utils.js';
 
 
 
@@ -16,19 +17,26 @@ const Show = () => {
 
 
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, setCurrentUser } = useContext(UserContext);
 
-  console.log(currentUser);
+  const signOutHandler =  async () => {
+    await signOutUser();
+    setCurrentUser(null);    
+  };
+
   return (
         <Fragment>
-          <div className='nav-link'>
-                 <Link 
-                   to="authentication">Log In or Sign Up
-                 </Link>
+            <div className='navigation'>
+               <div className='nav-links-container'>
+                 { currentUser ? (
+                   <span className='nav-link' onClick={signOutHandler}>SIGN OUT</span>
+                     ) : (
+                      <Link className='nav-link' to="authentication">Log In or Sign Up</Link>
+                    )}
+                </div>
             </div>
           <Outlet />
         </Fragment>
-
   );
 }
 
@@ -41,12 +49,6 @@ const App = () => {
               <BookLogo className="logo"/>
              </Link>
           </div>
- 
-
-
-
-
-
                   <Routes>
                       <Route path='/' element={<Navigation/>}> 
                          <Route index element={<Home/>} />
@@ -54,8 +56,6 @@ const App = () => {
                          <Route path="authentication" element={<Authentication/>} />
                       </Route>
                   </Routes>
-      
-
     </div>
  
             );
