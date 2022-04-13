@@ -3,7 +3,7 @@ import FormInput from '../../../components/form-input/form-input.js'
 import { signInWithGoogle, createUserDocumentFromAuth, signInWithGooglePopup, signInAuthUserWithEmailAndPassword } from '../../../utils/firebase/firebase.utils.js'
 import '../../../components/auth/sign-in/sign-in.styles.scss';
 import Button from '../../../components/button/button.js';
-import UserContext from '../../../contexts/user.context.js';
+//import UserContext from '../../../contexts/user.context.js';
 
 const defaultFormFields = {
     email: '',
@@ -16,7 +16,7 @@ const SignIn = () => {
 
    
 
-     const { setCurrentUser } = useContext(UserContext);
+    //  const { setCurrentUser } = useContext(UserContext);
 
    
 
@@ -26,20 +26,23 @@ const SignIn = () => {
 
 
     const signInWithGoogle = async () => {
-        const { user }= await signInWithGooglePopup();
+     await signInWithGooglePopup();
+     
   
-       await createUserDocumentFromAuth(user);
+ 
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
-                const { user } = await signInAuthUserWithEmailAndPassword(
-                    email,
-                    password
-                );
-                 setCurrentUser(user);    
+                // const { user } = await signInAuthUserWithEmailAndPassword(
+                //     email,
+                //     password
+                // );
+                //  setCurrentUser(user);    
+
+                await signInAuthUserWithEmailAndPassword(email, password);
 
                 resetFormFields();
 

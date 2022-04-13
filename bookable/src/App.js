@@ -17,19 +17,19 @@ const Show = () => {
 
 
 const Navigation = () => {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser} = useContext(UserContext);
 
-  const signOutHandler =  async () => {
-    await signOutUser();
-    setCurrentUser(null);    
-  };
+  // const signOutHandler =  async () => {
+  //   await signOutUser();
+  //   // setCurrentUser(null);    
+  // };
 
   return (
         <Fragment>
             <div className='navigation'>
                <div className='nav-links-container'>
                  { currentUser ? (
-                   <span className='nav-link' onClick={signOutHandler}>SIGN OUT</span>
+                   <span className='nav-link' onClick={signOutUser}> { ''} SIGN OUT {''} </span>
                      ) : (
                       <Link className='nav-link' to="authentication">Log In or Sign Up</Link>
                     )}
