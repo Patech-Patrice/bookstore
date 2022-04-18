@@ -2,18 +2,26 @@ module Api
   module V1
     class BooksController < ApplicationController
     before_action :set_book, only: %i[ show update destroy ]
+    before_action :find_book, only: [ :edit, :update, :destroy]
 
     # GET /books
     def index
       @books = Book.all
 
-      render json: @books
+      # render json: @books
+      render json: @books.to_json(include: [:author]), status: :ok
     end
 
+  
+      
+      
+ 
+
     # GET /books/1
-    def show
-      render json: @book
-    end
+      def show
+        @book = Book.find(params[:id])
+        # render json: @book.to_json(include: [:author]), status: :ok
+      end 
 
     # POST /books
     def create
@@ -46,9 +54,13 @@ module Api
         @book = Book.find(params[:id])
       end
 
+      def find_book
+        @book = Book.find(params[:id])
+      end
+
       # Only allow a list of trusted parameters through.
       def book_params
-        params.require(:book).permit(:title, :body, :image_url, :id)
+        params.require(:book).permit(:title, :body, :image_url, :id, :author_id)
       end
   end
 end
