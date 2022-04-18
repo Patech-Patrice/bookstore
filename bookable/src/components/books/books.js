@@ -35,8 +35,10 @@ useEffect(() => {
                          return (
                         <div key={book.id}>
                             <Link className="link-text" to={`/books/${book.id}`}>{book.title}</Link>
+                            <h3>{book.author}</h3>
                             <p>{book.body}</p>
                             <img src={book.image_url} height='300' width='200'></img>
+                            <p>{book.genre}</p>
                         </div>
                     );
                   })}  
