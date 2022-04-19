@@ -21,12 +21,19 @@ useEffect(() => {
         if (mounted) {
 
             setBooks(books);
-            console.log(books);
+            // console.log(books);
        
         }    
     });
     return () => {(mounted = false)};
 }, []);
+
+    const conditionalAuthor = book => {
+        if(book.author)
+        {
+            return ( <p>{book.author.first_name} {book.author.last_name}</p> )
+        }
+    }
 
 
     return (
@@ -38,7 +45,10 @@ useEffect(() => {
                         <Link className="link-text" to={`/books/${book.id}`}>{book.title}</Link>
                         
                         <p>{book.body}</p>
-                        {JSON.stringify(book.author)} 
+                        {console.log(book)}
+                       
+                        {conditionalAuthor(book)}
+                     
                         <img src={book.image_url} height='300' width='200'></img>
                         
                         <p>{book.genre}</p>
