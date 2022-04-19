@@ -1,7 +1,9 @@
-import { useState, useEffect, Fragment, Container, Row, Card, CardDeck } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams} from 'react-router-dom'
-import  Book  from '../../components/book/book.js';
+// import  Book  from '../../components/book/book.js';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 function getBookData(){
     return axios.get('/api/v1/books').then((response) => response.data)
@@ -37,25 +39,44 @@ useEffect(() => {
 
 
     return (
-        <div className='book-body-container'>
+        
        
-                 {books.map((book, index) => {
-                     return (
-                    <div key={book.id}>
-                        <Link className="link-text" to={`/books/${book.id}`}>{book.title}</Link>
-                        
-                        <p>{book.body}</p>
-                        {console.log(book)}
-                       
-                        {conditionalAuthor(book)}
-                     
-                        <img src={book.image_url} height='300' width='200'></img>
-                        
-                        <p>{book.genre}</p>
-                    </div>
-                );
-              })}  
-     </div>
+
+
+      
+    <div className="card mb-3" style={{width: '500px'}}>
+        {books.map((book, index) => {
+            return (
+        <div className="card-body" key={book.id}>
+          <h5 className="card-title" to={`/books/${book.id}`}>{book.title}</h5>
+               <div className="col-md-4">
+               <img src={book.image_url}  ></img>
+         
+      </div>
+          <p className="card-text">
+            {book.body}
+          </p>
+       
+
+          <p className="card-text">
+            <small className="text-muted">{conditionalAuthor(book)}</small>
+          </p>
+          
+          <p className="card-text">
+            <small className="text-muted">{book.genre}</small>
+          </p>
+        </div>
+                 );
+          })}  
+      </div>
+      
+   
+    
+     
+ 
+
+  
+
       
     );
 }

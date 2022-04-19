@@ -3,8 +3,6 @@ import './App.css';
 import axios from 'axios';
 import Books from './components/books/books.js';
 import Book from './components/book/book.js';
-import Users from './components/users';
-import Dashboard from './components/dashboard';
 import { useState, useEffect, Fragment, useContext } from 'react';
 import { Routes, Route, Link, Outlet, useParams } from 'react-router-dom';
 import Home from './routes/home/home.js';
@@ -12,14 +10,8 @@ import Authentication from './components/auth/authentication.js';
 import { UserContext } from './contexts/user.context.js';
 import { ReactComponent as BookLogo} from './assets/book_logo.svg';
 import { signOutUser} from './utils/firebase/firebase.utils.js';
-
-
-function getBookData(){
-  return axios.get('/api/v1/books').then((response) => response.data)
-}
-
-
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Card, Button } from 'react-bootstrap';
 
 const Navigation = () => {
   const { currentUser} = useContext(UserContext);
@@ -47,30 +39,16 @@ const Navigation = () => {
 
 
 function App() {
-  const [books, setBooks] = useState([]);
-
-
-          useEffect(() => {
-            let mounted = true;
-            getBookData().then((items) =>  {
-              if (mounted) {
-                setBooks(items);
-              }
-          });
-          return () => {(mounted = false)};
-        }, []);
 
 
 
   return (
-              <div className="App">
-                  <div >
+    <div className="App">
+                <div >
                   <Link className='logo-container' to='/'>
                   <BookLogo className="logo"/>
                   </Link>
               </div>
-
-
                   <Routes>
                          <Route path='/' element={<Navigation/>}>                         
                           {/* <Route path='show' element={<Show/>} /> */}
