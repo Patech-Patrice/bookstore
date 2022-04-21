@@ -21,8 +21,7 @@ const Navigation = () => {
         <Fragment>
             <div className='navigation'>
                <div className='nav-links-container'>
-               {/* <Link to="books">Books</Link><br/><br/> */}
-               <Link to="books/:id">Book</Link><br/><br/>
+               <Link to="/books">View All Books</Link><br/><br/>
                  { currentUser ? (
                    <span className='nav-link' onClick={signOutUser}> { ''} SIGN OUT {''} </span>
                      ) : (
@@ -52,9 +51,9 @@ function App() {
                   <Routes>
                          <Route path='/' element={<Navigation/>}>                         
                           {/* <Route path='show' element={<Show/>} /> */}
-                          <Route path="authentication" element={<Authentication/>} />
-                          {/* <Route path="books" element={<Books />} />   */}
-                           <Route path="books/:id" element={<Books />} />  
+                          <Route path="/authentication" element={<Authentication/>} />
+                          <Route path="/books" element={<Books />} />  
+                           <Route path="/books/:id" element={<Book />} />  
                          
                        
 

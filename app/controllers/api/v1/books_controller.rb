@@ -17,10 +17,10 @@ module Api
       
  
 
-    # GET /books/1
+    # GET /books/:id
       def show
         @book = Book.find(params[:id])
-        # render json: @book.to_json(include: [:author]), status: :ok
+        render json: @book.to_json(include: [:author]), status: :ok
       end 
 
     # POST /books

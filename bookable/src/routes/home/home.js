@@ -1,5 +1,5 @@
 import CategoryItem from '../../components/category-item/category-item.js';
-//import { Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
@@ -9,6 +9,7 @@ const Home = () => {
     id: 1,
     title: 'Horror Novels',
     image: require('../../assets/images/horror_logo.png'),
+    
   },
   {
     id: 2,
@@ -35,9 +36,10 @@ const Home = () => {
   return (
 
         <div className="categories-container">
-            {/* <Outlet /> */}
+             
            {categories.map(( category) =>(
               <CategoryItem key={category.id} category={category} />
+
                ))} 
           </div>
   );
