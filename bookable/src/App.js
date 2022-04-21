@@ -3,7 +3,7 @@ import './App.css';
 import axios from 'axios';
 import Books from './components/books/books.js';
 import Book from './components/book/book.js';
-import BookInput from '/Users/patricedrayton/bookstore/bookable/src/components/book-input/book-input.js';
+import BookInput from './components/book-input/book-input.js';
 import { useState, useEffect, Fragment, useContext } from 'react';
 import { Routes, Route, Link, Outlet, useParams } from 'react-router-dom';
 import Home from './routes/home/home.js';
@@ -13,6 +13,7 @@ import { ReactComponent as BookLogo} from './assets/book_logo.svg';
 import { signOutUser} from './utils/firebase/firebase.utils.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, Button } from 'react-bootstrap';
+import Dashboard from './components/dashboard.js'
 
 
 // const BookInput = () => {
@@ -30,10 +31,12 @@ const Navigation = () => {
             <div className='navigation'>
                <div className='nav-links-container'>
                <Link to="/books">View All Books</Link><br/><br/>
+          
                  { currentUser ? (
                    <span className='nav-link' onClick={signOutUser}> { ''} SIGN OUT {''} </span>
                      ) : (
-                      <Link className='nav-link' to="authentication">Log In or Sign Up</Link>
+                      <Link className='nav-link' to="authentication">Log In or Sign Up </Link>
+                     
                     )}
                 </div>
             </div>
@@ -57,12 +60,13 @@ function App() {
                   </Link>
               </div>
               <div>
-                <BookInput />
+            
                 </div>
           
                   <Routes>
                          <Route path='/' element={<Navigation/>}>                         
-                          {/* <Route path='/books/' element={<BookInput/>} /> */}
+                          <Route path='/books/new' element={<BookInput/>} />
+                           <Route path='/dashboard/' element={<Dashboard/>} /> 
                           <Route path="/authentication" element={<Authentication/>} />
                           <Route path="/books" element={<Books />} />  
                            <Route path="/books/:id" element={<Book />} />  

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams} from 'react-router-dom'
+import BookInput from '../../components/book-input/book-input.js'
 
 
 
@@ -40,9 +41,10 @@ useEffect(() => {
 
 
     return (
+        <div>
+                <Link className="card-title" href="" to="/books/new"> Add New Book</Link>
     <div className="card mb-3" style={{width: '500px'}}>
     
-    <Link className=""  to={`/books/`}>Add Book</Link>
     
         {books.map((book, index) => {
             return (
@@ -55,6 +57,7 @@ useEffect(() => {
             {book.body}
           </p>
         
+        {/* <BookInput /> */}
        
 
           <div className="card-text">
@@ -67,6 +70,7 @@ useEffect(() => {
         </div>
                  );
           })}  
+      </div>
       </div>
     
       

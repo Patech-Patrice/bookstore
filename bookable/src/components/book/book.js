@@ -28,10 +28,11 @@ const Book = (props) => {
       try{
         const response = await fetch(url);
         const book = await response.json();
+        console.log(book);
         
         
-        console.log(book.image_url);
-        console.log(book.author_id);
+        // console.log(book.image_url);
+        //console.log(book.author_id);
 
         setTitle(book.title)
         setBody(book.body)

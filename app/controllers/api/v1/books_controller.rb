@@ -13,13 +13,16 @@ module Api
     end
 
   
-      
-      
+    # GET /books#new  
+      def new
+        @book = Book.new
+        render :new
+      end
  
 
     # GET /books/:id
       def show
-        @book = Book.find(params[:id])
+        @book = Book.find_by_id params[:id]
         render json: @book.to_json(include: [:author]), status: :ok
       end 
 
@@ -51,7 +54,7 @@ module Api
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_book
-        @book = Book.find(params[:id])
+        @book = Book.find_by_id params[:id]
       end
 
       def find_book
