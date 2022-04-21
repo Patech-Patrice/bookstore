@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import Books from './components/books/books.js';
 import Book from './components/book/book.js';
+import BookInput from '/Users/patricedrayton/bookstore/bookable/src/components/book-input/book-input.js';
 import { useState, useEffect, Fragment, useContext } from 'react';
 import { Routes, Route, Link, Outlet, useParams } from 'react-router-dom';
 import Home from './routes/home/home.js';
@@ -12,6 +13,13 @@ import { ReactComponent as BookLogo} from './assets/book_logo.svg';
 import { signOutUser} from './utils/firebase/firebase.utils.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, Button } from 'react-bootstrap';
+
+
+// const BookInput = () => {
+//   return (
+//     <h1> This is the page for the component add a new book </h1>
+//   );
+// };
 
 const Navigation = () => {
   const { currentUser} = useContext(UserContext);
@@ -48,15 +56,18 @@ function App() {
                   <BookLogo className="logo"/>
                   </Link>
               </div>
+              <div>
+                <BookInput />
+                </div>
+          
                   <Routes>
                          <Route path='/' element={<Navigation/>}>                         
-                          {/* <Route path='show' element={<Show/>} /> */}
+                          {/* <Route path='/books/' element={<BookInput/>} /> */}
                           <Route path="/authentication" element={<Authentication/>} />
                           <Route path="/books" element={<Books />} />  
                            <Route path="/books/:id" element={<Book />} />  
                          
-                       
-
+      
                           <Route index element={<Home/>} />                        
                       </Route>
                    </Routes>

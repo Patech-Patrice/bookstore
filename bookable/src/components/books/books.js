@@ -41,6 +41,9 @@ useEffect(() => {
 
     return (
     <div className="card mb-3" style={{width: '500px'}}>
+    
+    <Link className=""  to={`/books/`}>Add Book</Link>
+    
         {books.map((book, index) => {
             return (
         <div className="card-body" key={book.id}>
