@@ -65,7 +65,7 @@ function App() {
           
                   <Routes>
                          <Route path='/' element={<Navigation/>}>                         
-                          <Route path='/books/new' element={<BookInput/>} />
+                          <Route path='/books/create' element={<BookInput/>} />
                            <Route path='/dashboard/' element={<Dashboard/>} /> 
                           <Route path="/authentication" element={<Authentication/>} />
                           <Route path="/books" element={<Books />} />  

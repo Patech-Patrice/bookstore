@@ -42,7 +42,7 @@ useEffect(() => {
 
     return (
         <div>
-                <Link className="card-title" href="" to="/books/new"> Add New Book</Link>
+                <Link className="card-title" href="" to="/books/create"> Add New Book</Link>
     <div className="card mb-3" style={{width: '500px'}}>
     
     
