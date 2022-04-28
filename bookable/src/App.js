@@ -4,6 +4,7 @@ import axios from 'axios';
 import Books from './components/books/books.js';
 import Book from './components/book/book.js';
 import BookInput from './components/book-input/book-input.js';
+import EditBook from './components/edit-book/edit-book.js';
 import { useState, useEffect, Fragment, useContext } from 'react';
 import { Routes, Route, Link, Outlet, useParams } from 'react-router-dom';
 import Home from './routes/home/home.js';
@@ -16,9 +17,11 @@ import { Card, Button } from 'react-bootstrap';
 import Dashboard from './components/dashboard.js'
 
 
-// const BookInput = () => {
+// const EditBook = () => {
 //   return (
-//     <h1> This is the page for the component add a new book </h1>
+//     <div>
+//     <h1> This is the page for the component edit a book </h1>
+//     </div>
 //   );
 // };
 
@@ -60,12 +63,14 @@ function App() {
                   </Link>
               </div>
               <div>
+                {/* <EditBook /> */}
             
                 </div>
           
                   <Routes>
                          <Route path='/' element={<Navigation/>}>                         
                           <Route path='/books/create' element={<BookInput/>} />
+                          <Route path='/books/update' element={<EditBook />} />
                            <Route path='/dashboard/' element={<Dashboard/>} /> 
                           <Route path="/authentication" element={<Authentication/>} />
                           <Route path="/books" element={<Books />} />  

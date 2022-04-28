@@ -56,7 +56,8 @@ module Api
 
     # DELETE /books/1
     def destroy
-      @book.destroy
+      @book = Book.find_by(id: params[:id])
+      # @book.destroy
       if @book.destroy
         head :no_content, status: :ok
       else

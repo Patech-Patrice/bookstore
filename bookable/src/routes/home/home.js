@@ -30,6 +30,11 @@ const Home = () => {
     id: 5,
     title: 'Romance Novels',
     image: require('../../assets/images/romance_logo.png'),
+  },  
+  {
+    id: 6,
+    title: 'Fiction Novels',
+    image: require('../../assets/images/romance_logo.png'),
   }
 ]
 

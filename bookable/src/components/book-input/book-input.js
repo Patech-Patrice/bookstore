@@ -37,16 +37,16 @@ export default function BookInput() {
     author
   } = bookInput.book;
 
-    console.log(bookInput.book);
+  //  console.log(bookInput.book);
 
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(event);
+  //  console.log(event);
    
    const body = JSON.stringify(makeBookObj());
 
-   console.log(body);
+   //console.log(body);
 
     fetch('http://localhost:3000/api/v1/books', {
       method: 'POST',
@@ -57,7 +57,7 @@ export default function BookInput() {
     }).then((response) => {return response.json()})
     .then((book)=>{
        setBookInput(book)
-      console.log(book)
+     // console.log(book)
       navigate('/books', {state: title, genre, image_url, body, author })
     }) 
 
@@ -65,7 +65,7 @@ export default function BookInput() {
 
 
   const makeBookObj = () => {
-      console.log(bookInput);
+     // console.log(bookInput);
 
 
       const book = bookInput.book;
@@ -78,7 +78,7 @@ export default function BookInput() {
           author: book.author,
          
         }
-        console.log(bookObj);
+        //console.log(bookObj);
 
         return bookObj;
 }
