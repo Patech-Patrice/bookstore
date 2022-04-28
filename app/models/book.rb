@@ -5,8 +5,10 @@ class Book < ApplicationRecord
    
     validates :genre, presence: true
 
-    belongs_to :author
+    validates :author, presence: true
 
-    accepts_nested_attributes_for :author, allow_destroy: true
+    validates :image_url, presence: true
+
+ 
 
 end

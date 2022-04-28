@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, useParams} from 'react-router-dom'
-import BookInput from '../../components/book-input/book-input.js'
+import { Link } from 'react-router-dom'
+
 
 
 
@@ -14,7 +14,7 @@ const Books = (props) => {
    
 const [books, setBooks] = useState([]);
 
-const { id } = useParams();
+
 
 
 
@@ -32,12 +32,7 @@ useEffect(() => {
     return () => {(mounted = false)};
 }, []);
 
-    const conditionalAuthor = book => {
-        if(book.author)
-        {
-            return ( <p>{book.author.first_name} {book.author.last_name}</p> )
-        }
-    }
+
 
 
     return (
@@ -49,7 +44,8 @@ useEffect(() => {
         {books.map((book, index) => {
             return (
         <div className="card-body" key={book.id}>
-          <Link className="card-title" href={book.title} to={`/books/${book.id}`}>{book.title}</Link>
+          <Link className="card-title" href={book.title} to={`/books/${book.id}`}>{book.title}  </Link>
+                  <h6> {book.author} </h6>
                <div className="col-md-4">
                <img  style={{height: '300px', width: '200px'}} src={book.image_url}></img>
         </div>
@@ -57,13 +53,6 @@ useEffect(() => {
             {book.body}
           </p>
         
-        {/* <BookInput /> */}
-       
-
-          <div className="card-text">
-            <small className="text-muted">{conditionalAuthor(book)}</small>
-          </div>
-          
           <div className="card-text">
             <small className="text-muted">{book.genre}</small>
           </div>

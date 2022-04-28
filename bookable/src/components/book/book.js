@@ -2,19 +2,15 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-
-
-
-
-
 const Book = (props) => {
 
   const [book, setBook] = useState([]);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [genre, setGenre] = useState("");
-  const [author_id, setAuthor_id] = useState("");
+ 
   const [img, setImg] = useState(null);
+  const [author, setAuthor] = useState('');
   
 
   const { id } = useParams();
@@ -28,21 +24,15 @@ const Book = (props) => {
       try{
         const response = await fetch(url);
         const book = await response.json();
-        console.log(book);
-        
-        
-        // console.log(book.image_url);
-        //console.log(book.author_id);
-
+        // console.log(book);
+      
         setTitle(book.title)
         setBody(book.body)
         setGenre(book.genre)
         setImg(book.image_url)
-        setAuthor_id(book.author_id)
-        
-
+        setAuthor(book.author)
           }catch (error){
-            console.log("error", error);
+            alert("error", error);
           }      
     };
       fetchData();
@@ -53,41 +43,27 @@ const Book = (props) => {
 
 
 
-   const conditionalAuthor = book => {
-        if(book.author)
-        {
-            return ( <p>{book.author.first_name} {book.author.last_name}</p> )
-        }
-    }
+
 
   
 return (
-  <div className='book-body-container'> 
-    {/* <h2> Book -- { id }</h2> */}
-      <h3>{title}</h3>
-   
-      <div className="card-text">
-        <small className="text-muted">
-        {genre}
-        {conditionalAuthor(book)}
-        </small>
-        <p>{body}</p>
-       </div>
-       <div className="col-md-4">
-                {img && <img  src={img} style={{height: '300px', width: '200px'}} ></img>}
-        </div>
+      <div className='book-body-container'> 
+            <h3>{title}</h3>
+            <h6>{author}</h6>
+            <div className="card-text">
+                <small className="text-muted">{genre}</small>
+                <p>{body}</p>
+            </div>
+            <div className="col-md-4">
+                    {img && <img  src={img} style={{height: '300px', width: '200px'}} ></img>}
+            </div>
+            <button > Delete Book </button>
 
-    </div>
-)
+      </div>
+      )
 }
 
  
-
-
-    
-
-
-
 export default Book;
 
 
