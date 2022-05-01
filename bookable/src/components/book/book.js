@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import EditBook from '/Users/patricedrayton/bookstore/bookable/src/components/edit-book/edit-book.js';
 
 const Book = (props) => {
 
@@ -14,7 +15,10 @@ const Book = (props) => {
   const [author, setAuthor] = useState('');
 
   const [deleteBook, setDeleteBook] = useState();
-  const [editedBookId, setEditedBookId] = useState();
+  const [bookId, setBookId] = useState();
+
+
+
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -35,6 +39,7 @@ const Book = (props) => {
         setGenre(book.genre)
         setImg(book.image_url)
         setAuthor(book.author)
+    
           }catch (error){
             alert("error", error);
           }      
@@ -67,7 +72,7 @@ const handleDeleteBook = async (eventId) => {
 
 
 const editedBook = (id) => {
-  setEditedBookId({id});
+  setBookId({id});
 }
 
 
@@ -102,6 +107,9 @@ const editedBook = (id) => {
 
 return (
       <div className='book-body-container' key={book.id} > 
+          <div>
+       {/* < EditBook /> */}
+        </div>
             <h3>{title}</h3>
             <h6>{author}</h6>
             <div className="card-text">
@@ -117,12 +125,13 @@ return (
             </button>
          
             <button>
-            <Link to={`/books/update`}>Edit</Link>
+            <Link className='update' to={`/books/update/` + id }>Edit</Link>
             {/* <Link className=""  to={`/books/${book.id}`}> Edit Book  </Link> */}
             </button>
 
 
       </div>
+  
       )
 }
 

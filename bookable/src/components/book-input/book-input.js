@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {  useNavigate } from 'react-router-dom';
+import {  useNavigate, Link } from 'react-router-dom';
 
 
 export default function BookInput() {
@@ -12,6 +12,9 @@ export default function BookInput() {
       author: '',
     }
   });
+
+  const [isEditing, setIsEditing] = useState(false);
+
 
 
 
@@ -29,6 +32,7 @@ export default function BookInput() {
   };
 
   const navigate = useNavigate();
+
   const {
     title,
     body,
@@ -37,16 +41,16 @@ export default function BookInput() {
     author
   } = bookInput.book;
 
-  //  console.log(bookInput.book);
+
 
 
   const handleSubmit = event => {
     event.preventDefault();
-  //  console.log(event);
+
    
    const body = JSON.stringify(makeBookObj());
 
-   //console.log(body);
+ 
 
     fetch('http://localhost:3000/api/v1/books', {
       method: 'POST',
@@ -65,9 +69,6 @@ export default function BookInput() {
 
 
   const makeBookObj = () => {
-     // console.log(bookInput);
-
-
       const book = bookInput.book;
       const  bookObj =  {
           //seperate method that converts book input into a book object
@@ -78,18 +79,29 @@ export default function BookInput() {
           author: book.author,
          
         }
-        //console.log(bookObj);
-
         return bookObj;
-}
+  }
 
+    // function to get the value of the edit input and set the new state
+    const handleEditInputChange = (event) => {
+      // set the new state value to what's currently in the edit input box
+      setBookInput({ ...bookInput, [event.target.name]: event.target.value });
+      console.log(bookInput);
+    }
+
+
+    const handleEditBookSubmit = (event) => {
+      // set the new state value to what's currently in the edit input box
+      // setBookInput({ ...bookInput, [event.target.name]: event.target.value });
+      // console.log(bookInput);
+    }
 
 
   return (
         
             
     <div className="App">
-      <h4> Create a New Book:</h4>
+          <h4> Create a New Book:</h4>
       <form  onSubmit={handleSubmit}>
       Title: <input type='text' name="title" value={title} onChange={handleChange} />
       <br />
@@ -116,7 +128,21 @@ export default function BookInput() {
       
     
       <br />
-    
+
+          
+
+
+
+ 
+        
+
+
+        
+
+      
+      
     </div>
+    
+    
   );
 }
