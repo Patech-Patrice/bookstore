@@ -3,24 +3,9 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 
 
 
-
-
-
-
-
-
 const EditBook = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  // const [bookId, setBookId] = useState();
-  // const [book, setBook] = useState([]);
-   const [title, setTitle] = useState("");
-   const [body, setBody] = useState("");
-   const [genre, setGenre] = useState("");
- 
-   const [img, setImg] = useState(null);
-   const [author, setAuthor] = useState('');
-
 
   const [bookInput, setBookInput] = useState({
     book: {
@@ -31,31 +16,48 @@ const EditBook = () => {
       author: '',
     }
   });
+
+  const [editBook, setEditBook] = useState({
+    book: {
+      title: '',
+      body: '',
+      genre:'',
+      image_url:'', 
+      author: '',
+    }
+  });
  
-const editBook = useRef(null);
+// const editBook = useRef(null);
+
 
 const handleSubmit = e => {
   e.preventDefault()
 
-  const body = JSON.stringify();
-  fetch('http://localhost:3000/api/v1/books/update/' + id, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: body,
-  }).then((response) => {return response.json()})
-  .then((book)=>{
-     setBookInput(book)
-    console.log(book)
-    // navigate('/books', {state: title, genre, image_url, body, author })
-  }) 
+  // const body = JSON.stringify();
+  // fetch('http://localhost:3000/api/v1/books/update/' + id, {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: body,
+  // }).then((response) => {
+  //   // return response.json()
+  
+  //       })
+  // .then((book)=>{
+   
+  //    setBookInput(book)
+  //   console.log(book)
+  
+    
+  //   // navigate('/books', {state: title, genre, image_url, body, author })
+  // }) 
 
 }
 
 
 const handleChange = ()=> {
-  alert('Edit Book Submitted');
+  // alert('Edit Book Submitted');
 }
 
 
@@ -78,8 +80,7 @@ const handleChange = ()=> {
          
         
         setBookInput(book)
-        setTitle(book.title);
-        // setTitle(response[0].title);
+       
         
     
           }catch (error){
@@ -103,23 +104,23 @@ const handleChange = ()=> {
       <h2> Edit Book Form: </h2>
 
     
-      <form  ref={editBook} onSubmit={handleSubmit}>
-      Title: <input type='text' name="title"  onChange={handleChange} />
+      <form   onSubmit={handleSubmit}>
+      Title: <input type='text' name="title" value={bookInput.title} onChange={handleChange} />
       <br />
       <br />
-      Genre: <input name="genre"  onChange={handleChange} />
+      Genre: <input name="genre" value={bookInput.genre} onChange={handleChange} />
       <br />
       <br />
-      Cover Image URL: <input name="image_url"  onChange={handleChange} />
+      Cover Image URL: <input name="image_url"  value={bookInput.image_url} onChange={handleChange} />
       <br />
       <br />
 
   
       <br />
-      Description: <textarea name="body" rows="4" cols="50"   onChange={handleChange} />  
+      Description: <textarea name="body" rows="4" cols="50"  value={bookInput.body} onChange={handleChange} />  
       <br />
       <br />
-      Author: <input name="author"  onChange={handleChange} />
+      Author: <input name="author" value={bookInput.author} onChange={handleChange} />
       <br />
       <br />
       
