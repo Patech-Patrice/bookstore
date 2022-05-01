@@ -13,24 +13,6 @@ export default function BookInput() {
     }
   });
 
-  const [isEditing, setIsEditing] = useState(false);
-
-
-
-
-  const handleChange = event => {
-   // console.log(event.target.name);
-      event.preventDefault();
-        setBookInput(prevState => {
-          return {
-            book: {
-              ...prevState.book,
-              [event.target.name]: event.target.value,
-            }
-      };
-    });
-  };
-
   const navigate = useNavigate();
 
   const {
@@ -41,17 +23,9 @@ export default function BookInput() {
     author
   } = bookInput.book;
 
-
-
-
   const handleSubmit = event => {
     event.preventDefault();
-
-   
-   const body = JSON.stringify(makeBookObj());
-
- 
-
+   const body = JSON.stringify(bookInput.book);
     fetch('http://localhost:3000/api/v1/books', {
       method: 'POST',
       headers: {
@@ -64,37 +38,25 @@ export default function BookInput() {
      // console.log(book)
       navigate('/books', {state: title, genre, image_url, body, author })
     }) 
-
   }
 
-
-  const makeBookObj = () => {
-      const book = bookInput.book;
-      const  bookObj =  {
-          //seperate method that converts book input into a book object
-          title: book.title,
-          genre: book.genre,
-          image_url: book.image_url,
-          body: book.body,
-          author: book.author,
-         
-        }
-        return bookObj;
-  }
-
-    // function to get the value of the edit input and set the new state
-    const handleEditInputChange = (event) => {
-      // set the new state value to what's currently in the edit input box
-      setBookInput({ ...bookInput, [event.target.name]: event.target.value });
-      console.log(bookInput);
-    }
+  const handleChange = event => {
+    // console.log(event.target.name);
+       event.preventDefault();
+         setBookInput(prevState => {
+           return {
+             book: {
+               ...prevState.book,
+               [event.target.name]: event.target.value,
+             }
+       };
+     });
+   };
 
 
-    const handleEditBookSubmit = (event) => {
-      // set the new state value to what's currently in the edit input box
-      // setBookInput({ ...bookInput, [event.target.name]: event.target.value });
-      // console.log(bookInput);
-    }
+
+
+  
 
 
   return (
@@ -129,17 +91,7 @@ export default function BookInput() {
     
       <br />
 
-          
 
-
-
- 
-        
-
-
-        
-
-      
       
     </div>
     

@@ -32,7 +32,7 @@ const Book = (props) => {
       try{
         const response = await fetch(url);
         const book = await response.json();
-        // console.log(book);
+         console.log(book);
       
         setTitle(book.title)
         setBody(book.body)
@@ -51,65 +51,37 @@ const Book = (props) => {
 
 
 
-const handleDeleteBook = async (eventId) => {
-  const sure = window.confirm('Are you sure?');
-
-  if (sure) {
-    try {
-      const response = await window.fetch(`/api/v1/books/${id}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) throw Error(response.statusText);
-
-      alert('Book Deleted!');
-      navigate('/books');
-    } catch (error) {
-      alert.error(error);
-    }
-  }
-};
 
 
-const editedBook = (id) => {
-  setBookId({id});
+
+const handleDelete = (e, id) => {
+  fetch('http://localhost:3000/api/v1/books/' + id, {
+    method: 'DELETE',
+  }).then(
+      setBook()
+  )
+  console.log(book)
+    alert('Book Deleted')  
 }
 
 
 
 
 
-// const handleEditBook = async( id, title, body, genre, image_url, author ) => {
-//    // alert('Edit Button Pressed');
-//    axios
-//    .put("/api/v1/books/" + id, {
-//      book: {
-//        title,
-//        author,
-//        genre,
-//        body,
-//        image_url
-//      },
-//    })
-//    .then((response) => {
-//      console.log(response);
-//      const books = this.state.books;
-//      books[id - 1] = { id, title, author, genre, body, image_url };
-//      this.setState(() => ({
-//        books,
-//        editedBookId: null,
-//      }));
-//    })
-//    .catch((error) => console.log(error));
 
-// }
+
+
+
+
+
 
 
 return (
       <div className='book-body-container' key={book.id} > 
           <div>
-       {/* < EditBook /> */}
+     
         </div>
+   
             <h3>{title}</h3>
             <h6>{author}</h6>
             <div className="card-text">
@@ -120,7 +92,7 @@ return (
                     {img && <img  src={img} style={{height: '300px', width: '200px'}} ></img>}
             </div>
           
-            <button className="delete" type="button"onClick={() => handleDeleteBook(book.id)} >
+            <button className="delete" type="button"onClick={(e) => handleDelete(e, book.id)} >
                 Delete Book
             </button>
          

@@ -12,56 +12,56 @@ function getBookData(){
 
 const Books = (props) => {
    
-const [books, setBooks] = useState([]);
+          const [books, setBooks] = useState([]);
 
-
-
-
-
-useEffect(() => {
-    let mounted = true;
-    getBookData().then((books) => {
-
-        if (mounted) {
-
-            setBooks(books);
-            // console.log(books);
+          useEffect(() => {
+            let mounted = true;
+            getBookData().then((books) => {
+                if (mounted) {
+                    setBooks(books);
+                }    
+            });
+            return () => {(mounted = false)};
+        }, []);
        
-        }    
-    });
-    return () => {(mounted = false)};
-}, []);
 
-
-
+          const handleDelete = (e, id) => {
+             fetch('http://localhost:3000/api/v1/books/' + id, {
+               method: 'DELETE',
+             }).then(
+                 getBookData()
+             )
+             console.log(books)
+               alert('Book Deleted')  
+          }
 
     return (
         <div>
-                <Link className="card-title" href="" to="/books/create"> Add New Book</Link>
-               
-    <div className="card mb-3" style={{width: '500px'}}>
-    
-    
-        {books.map((book, index) => {
-            return (
-        <div className="card-body" key={book.id}>
-          <Link className="card-title" href={book.title} to={`/books/${book.id}`}>{book.title}  </Link>
-                  <h6> {book.author} </h6>
-               <div className="col-md-4">
-               <img  style={{height: '300px', width: '200px'}} src={book.image_url}></img>
-        </div>
-          <p className="card-text">
-            {book.body}
-          </p>
-        
-          <div className="card-text">
-            <small className="text-muted">{book.genre}</small>
-          </div>
-        </div>
-                 );
-          })}  
-      </div>
-      </div>
+          <Link className="card-title" href="" to="/books/create"> Add New Book</Link>
+          <div className="card mb-3" style={{width: '500px'}}>
+              {books.map((book, index) => {
+                  return (
+              <div className="card-body" key={book.id}>
+                <Link className="card-title" href={book.title} to={`/books/${book.id}`}>{book.title}  </Link>
+                        <h6> {book.author} </h6>
+                    <div className="col-md-4">
+                    <img  style={{height: '300px', width: '200px'}} src={book.image_url}></img>
+              </div>
+                <p className="card-text">
+                  {book.body}
+                </p>
+              
+                <div className="card-text">
+                  <small className="text-muted">{book.genre}</small>
+                </div>
+                <button className="delete" type="button"onClick={(e) => handleDelete(e, book.id)} >
+                      Delete Book
+                  </button>
+              </div>
+                      );
+                })}  
+            </div>
+            </div>
     
       
    

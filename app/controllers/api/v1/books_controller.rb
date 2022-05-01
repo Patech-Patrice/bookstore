@@ -35,7 +35,7 @@ module Api
    
       @book = Book.new(book_params)
 
-        # binding.pry
+          # binding.pry
     
       if @book.save
          render json: @book, status: :created, location: @book
@@ -45,13 +45,20 @@ module Api
       end
     end
 
+    
+
     # PATCH/PUT /books/1
+    # def update
+    #   if @book.update(book_params)
+    #     render json: @book
+    #   else
+    #     render json: @book.errors, status: :unprocessable_entity
+    #   end
+    # end
+
     def update
-      if @book.update(book_params)
-        render json: @book
-      else
-        render json: @book.errors, status: :unprocessable_entity
-      end
+      @book = Book.find(params[:id])
+      
     end
 
     # DELETE /books/1
