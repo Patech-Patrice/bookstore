@@ -7,7 +7,7 @@ const EditBook = (callback) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [bookInput, setBookInput] = useState({
+  const [editBookInput, setEditBookInput] = useState({
     book: {
       title: '',
       body: '',
@@ -19,61 +19,81 @@ const EditBook = (callback) => {
 
     const handleChange = (event) => {
       event.persist();
-      setBookInput({ ...bookInput, [event.target.name]: event.target.value });
+      setEditBookInput({ ...editBookInput, [event.target.name]: event.target.value });
     };
 
+    
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        fetch('http://localhost:3000/api/v1/books/' + id, {
+          body: JSON.stringify(editBookInput),
+          method: 'POST',
+        }).then(response => {
+          setEditBookInput(editBookInput);
+          navigate('/books')
+          // navigate('/books', {state: title, genre, image_url, body, author })
+          // do something if the server responds positively
+    }).catch(err => {
+      // do something if sending data went wrong
+    })
+        
+    }
+
+
+
+
+    // const handleSubmit = event => {
+    //   event.preventDefault();
+    //  const body = JSON.stringify(bookInput.book);
+    //   fetch('http://localhost:3000/api/v1/books', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: body,
+    //   }).then((response) => {return response.json()})
+    //   .then((book)=>{
+    //      setEditBookInput(editBookInput)
+    //    // console.log(book)
+    //     navigate('/books')
+    //   }) 
+    // }
 
   
 
-      // const handleSubmit = (event) => {
-      //   if (event) {
-      //     event.preventDefault();
-      //     console.log(bookInput);
-      //     //console.log(image_url);
-      //     setBookInput(bookInput);
-      //     navigate('/books')
-      //   }
-      // }
+         const handleEdit = (event, id) => {
+          fetch('http://localhost:3000/api/v1/books/' + editBookInput.id, {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(editBookInput)
+              }).then(response => response.json()).then(book => {
+                  setEditBookInput({editBookInput})
+              })
+              console.log(editBookInput)
+                alert('Book Updated')
+                 navigate('/books') 
+           }
 
 
 
 
-  const handleSubmit = event => {
-    event.preventDefault();
-   const body = JSON.stringify();
-    fetch('http://localhost:3000/api/v1/books/' + bookInput.id, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(bookInput)
-    }).then(response => response.json()).then(book => {
-        setBookInput({bookInput})
-    })
-    console.log(bookInput)
-      alert('Book Updated')
-      // navigate('/books', {
-      //   state: 
-      //  bookInput  })
-    // }) 
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  //  const handleEdit = (event, id => {
+  //   fetch('http://localhost:3000/api/v1/books/' + bookInput.id, {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(bookInput)
+  //   }).then(response => response.json()).then(book => {
+  //       setBookInput({bookInput})
+  //   })
+  //   console.log(bookInput)
+  //     alert('Book Updated')
+  //      navigate('/books') 
+  //  )}
 
 
 
@@ -85,12 +105,14 @@ const EditBook = (callback) => {
       try{
         const response = await fetch(url);
         const book = await response.json();
-        setBookInput(book)
+        console.log(book);
+        setEditBookInput(book)
           }catch (error){
             alert("error", error);
           }      
     };
       fetchData();
+      console.log('');
 }, []);
 
 
@@ -98,24 +120,29 @@ const EditBook = (callback) => {
       <div className="App">
           <h2> Edit Book Form: </h2>
           <form   onSubmit={handleSubmit}>
-          Title: <input type='text' name="title" value={bookInput.title ?? ""} onChange={handleChange} />
+          Title: <input type='text' name="title" value={editBookInput.title ?? ""} onChange={handleChange} />
           <br />
           <br />
-          Genre: <input name="genre" value={bookInput.genre ?? ""} onChange={handleChange} />
+          Genre: <input name="genre" value={editBookInput.genre ?? ""} onChange={handleChange} />
           <br />
           <br />
-          Cover Image URL: <input name="image_url"  value={bookInput.image_url ?? ""} onChange={handleChange} />
+          Cover Image URL: <input name="image_url"  value={editBookInput.image_url ?? ""} onChange={handleChange} />
           <br />
           <br />
           <br />
-          Description: <textarea name="body" rows="4" cols="50"  value={bookInput.body ?? ""} onChange={handleChange} />  
+          Description: <textarea name="body" rows="4" cols="50"  value={editBookInput.body ?? ""} onChange={handleChange} />  
           <br />
           <br />
-          Author: <input name="author" value={bookInput.author ?? ""} onChange={handleChange} />
+          Author: <input name="author" value={editBookInput.author ?? ""} onChange={handleChange} />
           <br />
           <br />
+          {/* <button className="update" type="button"onClick={handleEdit} >
+                      Update Book
+                  </button> */}
           
-          <button onChange={handleChange} type="submit">Update Book</button>
+             <button className="update" type="button"onClick={(e) => handleEdit(e, editBookInput.id)} >
+                      Update Book
+                  </button>
           </form>
     </div>
     );

@@ -48,18 +48,22 @@ module Api
     
 
     # PATCH/PUT /books/1
-    # def update
-    #   if @book.update(book_params)
-    #     render json: @book
-    #   else
-    #     render json: @book.errors, status: :unprocessable_entity
-    #   end
-    # end
-
     def update
       @book = Book.find(params[:id])
+      if @book.update(book_params)
+            render json: @book
+          else
+            render json: @book.errors, status: :unprocessable_entity
+          end
       
     end
+
+    def edit
+      @book = Book.find(params[:id])
+      render :edit
+    end
+
+   
 
     # DELETE /books/1
     def destroy

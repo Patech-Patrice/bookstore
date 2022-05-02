@@ -65,13 +65,13 @@ export default function BookInput() {
     <div className="App">
           <h4> Create a New Book:</h4>
       <form  onSubmit={handleSubmit}>
-      Title: <input type='text' name="title" value={title} onChange={handleChange} />
+      Title: <textarea type='text' rows="1" cols="45" name="title" value={title} onChange={handleChange} />
       <br />
       <br />
       Genre: <input name="genre" value={genre} onChange={handleChange} />
       <br />
       <br />
-      Cover Image URL: <input name="image_url" value={image_url} onChange={handleChange} />
+      Cover Image URL: <textarea rows="2" cols="45" name="image_url" value={image_url} onChange={handleChange} />
       <br />
       <br />
 

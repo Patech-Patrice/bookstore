@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import EditBook from '/Users/patricedrayton/bookstore/bookable/src/components/edit-book/edit-book.js';
+import EditBook from '../../components/edit-book/edit-book.js';
 
 const Book = (props) => {
 
@@ -54,27 +54,6 @@ const Book = (props) => {
 
 
 
-const handleDelete = (e, id) => {
-  fetch('http://localhost:3000/api/v1/books/' + id, {
-    method: 'DELETE',
-  }).then(
-      setBook()
-  )
-  console.log(book)
-    alert('Book Deleted')  
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 return (
       <div className='book-body-container' key={book.id} > 
@@ -92,9 +71,7 @@ return (
                     {img && <img  src={img} style={{height: '300px', width: '200px'}} ></img>}
             </div>
           
-            <button className="delete" type="button"onClick={(e) => handleDelete(e, book.id)} >
-                Delete Book
-            </button>
+         
          
             <button>
             <Link className='update' to={`/books/update/` + id }>Edit</Link>
