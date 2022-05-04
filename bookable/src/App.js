@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import Books from './components/books/books.js';
 import Book from './components/book/book.js';
+import Genre from './components/genre/genre.js';
 import BookInput from './components/book-input/book-input.js';
 import EditBook from './components/edit-book/edit-book.js';
 import { useState, useEffect, Fragment, useContext } from 'react';
@@ -14,16 +15,13 @@ import { ReactComponent as BookLogo} from './assets/book_logo.svg';
 import { signOutUser} from './utils/firebase/firebase.utils.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, Button } from 'react-bootstrap';
-import Dashboard from './components/dashboard.js'
+import Welcome from './components/welcome.js'
 
 
-// const EditBook = () => {
-//   return (
-//     <div>
-//     <h1> This is the page for the component edit a book </h1>
-//     </div>
-//   );
-// };
+
+
+
+
 
 const Navigation = () => {
   const { currentUser} = useContext(UserContext);
@@ -39,6 +37,7 @@ const Navigation = () => {
                    <span className='nav-link' onClick={signOutUser}> { ''} SIGN OUT {''} </span>
                      ) : (
                       <Link className='nav-link' to="authentication">Log In or Sign Up </Link>
+                      
                      
                     )}
                 </div>
@@ -56,14 +55,14 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="">
                 <div >
                   <Link className='logo-container' to='/'>
                   <BookLogo className="logo"/>
                   </Link>
               </div>
               <div>
-                {/* <EditBook /> */}
+         
             
                 </div>
           
@@ -71,12 +70,10 @@ function App() {
                          <Route path='/' element={<Navigation/>}>                         
                           <Route path='/books/create' element={<BookInput/>} />
                           <Route path='/books/update/:id' element={<EditBook />} />
-                           <Route path='/dashboard/' element={<Dashboard/>} /> 
+                           <Route path='/welcome/' element={<Welcome/>} /> 
                           <Route path="/authentication" element={<Authentication/>} />
                           <Route path="/books" element={<Books />} />  
-                           <Route path="/books/:id" element={<Book />} />  
-                         
-      
+                           <Route path="/books/:id" element={<Book />} /> 
                           <Route index element={<Home/>} />                        
                       </Route>
                    </Routes>
@@ -85,6 +82,8 @@ function App() {
     </div>
   );
 }
+
+
 
 
 

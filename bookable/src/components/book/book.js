@@ -14,8 +14,8 @@ const Book = (props) => {
   const [img, setImg] = useState(null);
   const [author, setAuthor] = useState('');
 
-  const [deleteBook, setDeleteBook] = useState();
-  const [bookId, setBookId] = useState();
+
+
 
 
 

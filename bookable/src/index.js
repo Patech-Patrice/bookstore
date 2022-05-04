@@ -6,6 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { UserProvider } from './contexts/user.context.js'
+import { BooksProvider } from './contexts/books.context.js'
 
 
 
@@ -13,7 +14,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 <BrowserRouter>
     <UserProvider>
+    
         <App />
+     
     </UserProvider>    
 </BrowserRouter>);
 

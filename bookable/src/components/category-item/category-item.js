@@ -1,33 +1,36 @@
-import '../category-item/category-item.styles.scss';
+import { useState, useEffect } from 'react';
 import {  Link } from 'react-router-dom';
+import axios from 'axios';
 import Books from '../../components/books/books.js'
+import '../category-item/category-item.styles.scss';
+
 
 
 const CategoryItem = ({ category }) => {
     const { image, title } = category;
 
-    const filterGenre = (props) => {
-      return (
-        <div></div>
-      );
-    }
-
-
-
-
 
     return (
+
         <div  className="category-container">
-        < div className="background-image" style={{
-          backgroundImage: `url(${image})`
-        }} />
+          <h1> Welcome to the Book Log App</h1>
+           
+        {/* < div className="background-image" style={{ backgroundImage: `url(${image})`}} />
           <div className="category-body-container">
+         
           <h2>{title} </h2>
-          {/* <Books />  */}
-          {/* when user clicks on show novels, they will be directed to the novels of that category item 
-          Maybe route looks like api/v1/books/genres*/}
-          <Link className="card-title" href="" to="/books"> Show Novels</Link>
-       </div>
+          <Link className="card-title" href="" to="/books/genre"> Show Novels</Link>
+          </div>
+            <div className="card mb-3" style={{width: '500px'}}>
+                <div className='' key={books.id}>
+                  {books.filter(books => books.genre ).map(filteredBooks => (
+                    <li>
+                      {filteredBooks.genre}
+                    </li>
+                  ))}
+                  </div>
+                </div> */}
+            
        </div>
     )
 }
