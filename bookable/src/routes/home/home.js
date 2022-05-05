@@ -61,7 +61,8 @@ const Home = () => {
 
         <div className="categories-container">
              
-      <Welcome />
+      {/* <Welcome /> */}
+      <h1> Welcome to the Book Logger App </h1>
        </div>
   );
 };

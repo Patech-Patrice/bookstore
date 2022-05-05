@@ -68,7 +68,17 @@ export default function BookInput() {
       Title: <textarea type='text' rows="1" cols="45" name="title" value={title} onChange={handleChange} />
       <br />
       <br />
-      Genre: <input name="genre" value={genre} onChange={handleChange} />
+      <label name="genre">Choose a genre:</label>
+          <select name="genre" id="genre" value={genre} onChange={handleChange}>
+            <option value="Horror">Horror</option>
+            <option value="Suspense">Suspense</option>
+            <option value="Mystery">Mystery</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Romance">Romance</option>
+            <option value="Fiction">Fiction</option>
+          </select>
+          
+
       <br />
       <br />
       Cover Image URL: <textarea rows="2" cols="45" name="image_url" value={image_url} onChange={handleChange} />
