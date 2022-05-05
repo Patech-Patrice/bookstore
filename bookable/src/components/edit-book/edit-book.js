@@ -41,27 +41,6 @@ const EditBook = (callback) => {
     }
 
 
-
-
-    // const handleSubmit = event => {
-    //   event.preventDefault();
-    //  const body = JSON.stringify(bookInput.book);
-    //   fetch('http://localhost:3000/api/v1/books', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: body,
-    //   }).then((response) => {return response.json()})
-    //   .then((book)=>{
-    //      setEditBookInput(editBookInput)
-    //    // console.log(book)
-    //     navigate('/books')
-    //   }) 
-    // }
-
-  
-
          const handleEdit = (event, id) => {
           fetch('http://localhost:3000/api/v1/books/' + editBookInput.id, {
                 method: 'PUT',
@@ -76,27 +55,6 @@ const EditBook = (callback) => {
                 alert('Book Updated')
                  navigate('/books') 
            }
-
-
-
-
-  //  const handleEdit = (event, id => {
-  //   fetch('http://localhost:3000/api/v1/books/' + bookInput.id, {
-  //     method: 'PUT',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(bookInput)
-  //   }).then(response => response.json()).then(book => {
-  //       setBookInput({bookInput})
-  //   })
-  //   console.log(bookInput)
-  //     alert('Book Updated')
-  //      navigate('/books') 
-  //  )}
-
-
-
 
 
   useEffect(() => {

@@ -60,6 +60,8 @@ module Api
 
     def edit
       @book = Book.find(params[:id])
+     # @book = current_user.books.find(params[:id])
+
       render :edit
     end
 
@@ -87,6 +89,8 @@ module Api
       def find_book
         @book = Book.find(params[:id])
       end
+
+      
 
       # Only allow a list of trusted parameters through.
       def book_params

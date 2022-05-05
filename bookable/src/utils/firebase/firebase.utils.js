@@ -11,6 +11,7 @@ import {
     signOut,
     onAuthStateChanged
     } from 'firebase/auth';
+    
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,6 +26,8 @@ const firebaseConfig = {
   appId: "1:747691731614:web:cc0c4a7ff20f9a70c5a98f",
   measurementId: "G-MH72P9XHPT"
 };
+
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -88,7 +91,9 @@ export const db = getFirestore();
         return await signInWithEmailAndPassword(auth, email, password);
     }
 
-    export const signOutUser = async () => await signOut(auth);
+    export const signOutUser = async () => await signOut(auth)
+    
+    ;
 
 
     export const onAuthStateChangedListener = (callback) => 

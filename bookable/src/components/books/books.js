@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import { Card, Button } from 'react-bootstrap';
+import { UserContext } from '../../contexts/user.context.js';
+import {  useContext } from 'react';
 
 
 
@@ -15,6 +17,8 @@ const Books = () => {
    
           const [books, setBooks] = useState([]);
           const [searchGenre, setSearchGenre] = useState([]);
+          const { currentUser} = useContext(UserContext);
+          
 
           useEffect(() => {
             let mounted = true;
@@ -55,7 +59,7 @@ const Books = () => {
                 />
               </label>
           <Link className="" href="" to="/books/create"> Add New Book</Link>
-         
+          {console.log()}
 
 
         
@@ -76,10 +80,15 @@ const Books = () => {
                         <div className="card-text">
                           <small className="text-muted">{book.genre}</small>
                         </div>
+
                         <button className="card-button" type="button"onClick={(e) => handleDelete(e, book.id)} >
                               Delete Book
                         </button>
+
+                        
               </div>
+
+
               </div>
                       );
                 })} 

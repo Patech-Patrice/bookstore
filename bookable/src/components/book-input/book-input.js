@@ -13,6 +13,8 @@ export default function BookInput() {
     }
   });
 
+  const [genreState, setGenreState] = useState();
+
   const navigate = useNavigate();
 
   const {
@@ -36,7 +38,11 @@ export default function BookInput() {
     .then((book)=>{
        setBookInput(book)
      // console.log(book)
-      navigate('/books', {state: title, genre, image_url, body, author })
+      navigate('/books', {state: title, 
+        genre, 
+        image_url, 
+        body, 
+        author })
     }) 
   }
 
@@ -68,16 +74,9 @@ export default function BookInput() {
       Title: <textarea type='text' rows="1" cols="45" name="title" value={title} onChange={handleChange} />
       <br />
       <br />
-      <label name="genre">Choose a genre:</label>
-          <select name="genre" id="genre" value={genre} onChange={handleChange}>
-            <option value="Horror">Horror</option>
-            <option value="Suspense">Suspense</option>
-            <option value="Mystery">Mystery</option>
-            <option value="Thriller">Thriller</option>
-            <option value="Romance">Romance</option>
-            <option value="Fiction">Fiction</option>
-          </select>
-          
+ 
+ 
+          Genre: <textarea rows="2" cols="45" name="genre" value={genre} onChange={handleChange} /> 
 
       <br />
       <br />

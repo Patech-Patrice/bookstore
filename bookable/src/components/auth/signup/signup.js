@@ -3,6 +3,7 @@ import FormInput from '../../../components/form-input/form-input.js'
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../../utils/firebase/firebase.utils.js'
 import '../../../components/auth/signup/signup.styles.scss';
 import Button from '../../../components/button/button.js';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 //import { UserContext } from '../../../contexts/user.context.js';
 
 const defaultFormFields = {
@@ -15,6 +16,7 @@ const defaultFormFields = {
 const SignUp = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { displayName, email, password, confirmPassword } = formFields;
+    const navigate = useNavigate();
 
 
     const resetFormFields = () => {
@@ -29,13 +31,15 @@ const SignUp = () => {
             return;
         }
         try {
-            const { user } = await createAuthUserWithEmailAndPassword(
-                email,
-                password
-                );
+            const { user } = await createAuthUserWithEmailAndPassword(email, password);
 
          await createUserDocumentFromAuth(user, { displayName }); 
+                 navigate('/books');
+                 console.log(formFields);
+                 console.log(formFields.displayName);
                 resetFormFields();
+
+
 
         }catch (error) {
             if(error.code === 'auth/email-already-in-use') {
